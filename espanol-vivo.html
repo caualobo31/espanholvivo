@@ -494,6 +494,37 @@
   /* ===================== HOW IT WORKS ===================== */
   .hiw-section { background: var(--bg); }
 
+  .hiw-card-img-wrap {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--bg-warm);
+    position: relative;
+  }
+
+  .hiw-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hiw-card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 12px;
+  }
+
+  .hiw-card-img-placeholder span { font-size: 28px; }
+
   .hiw-badge {
     display: inline-flex;
     align-items: center;
@@ -1544,6 +1575,10 @@
         <p>Cada volta nesse ciclo te custa noites mal dormidas, domingos perdidos e a energia que deveria ser sua.</p>
         <p>A questão não é <strong>falta de dedicação</strong>. É falta da <strong>ferramenta certa</strong>.</p>
       </div>
+      <div style="text-align:center;margin-top:32px;">
+        <a href="#planos" class="btn btn-primary">Quero Sair Desse Ciclo →</a>
+        <p class="micro-text">A partir de R$10,00 · Acesso imediato</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1559,6 +1594,10 @@
     <div class="hiw-cards">
 
       <div class="hiw-card">
+        <div class="hiw-card-img-wrap">
+          <img src="images/dinamicas/detective.jpg" alt="El Detective" class="hiw-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="hiw-card-img-placeholder" style="display:none;"><span>🖼️</span>images/dinamicas/detective.jpg</div>
+        </div>
         <div class="hiw-card-header">
           <span class="hiw-card-emoji">🎭</span>
           <div class="hiw-card-title">El Detective</div>
@@ -1584,6 +1623,10 @@
       </div>
 
       <div class="hiw-card">
+        <div class="hiw-card-img-wrap">
+          <img src="images/dinamicas/restaurante.jpg" alt="El Restaurante" class="hiw-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="hiw-card-img-placeholder" style="display:none;"><span>🖼️</span>images/dinamicas/restaurante.jpg</div>
+        </div>
         <div class="hiw-card-header">
           <span class="hiw-card-emoji">🍽️</span>
           <div class="hiw-card-title">El Restaurante</div>
@@ -1609,6 +1652,10 @@
       </div>
 
       <div class="hiw-card">
+        <div class="hiw-card-img-wrap">
+          <img src="images/dinamicas/debate.jpg" alt="Debate de Ciudades" class="hiw-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="hiw-card-img-placeholder" style="display:none;"><span>🖼️</span>images/dinamicas/debate.jpg</div>
+        </div>
         <div class="hiw-card-header">
           <span class="hiw-card-emoji">⚔️</span>
           <div class="hiw-card-title">Debate de Ciudades</div>
@@ -1636,6 +1683,10 @@
     </div>
     <div class="hiw-footer">
       <p>Essas são apenas 3 das <strong>+600 dinâmicas prontas</strong> do Español Vivo. Todas com esse nível de detalhe e organização.</p>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="#planos" class="btn btn-primary">Quero Acesso a Todas as Dinâmicas →</a>
+      <p class="micro-text">A partir de R$10,00 · Acesso imediato · Garantia de 15 dias</p>
     </div>
   </div>
 </section>
@@ -1811,6 +1862,10 @@
         </div>
       </div>
     </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="#planos" class="btn btn-primary" style="background:var(--primary);box-shadow:0 4px 20px rgba(181,69,27,0.45);">Quero Tudo Isso Agora →</a>
+      <p class="micro-text" style="color:rgba(255,255,255,0.55);">Todos os bônus inclusos no Plano Premium</p>
+    </div>
   </div>
 </section>
 
@@ -1855,25 +1910,6 @@
       <div style="text-align:center;">
         <a href="#planos" class="btn btn-premium">Quero Acessar Agora →</a>
         <p class="micro-text">Acesso imediato · Garantia de 15 dias</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 12. GUARANTEE -->
-<section class="section guarantee-section">
-  <div class="container">
-    <div class="guarantee-box">
-      <div class="guarantee-icon-wrap">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          <polyline points="9,12 11,14 15,10"/>
-        </svg>
-      </div>
-      <div class="guarantee-content">
-        <div class="guarantee-badge">🛡️ GARANTIA TOTAL</div>
-        <h3 class="guarantee-title"><span class="es">Sin riesgo.</span> 15 dias para testar. Se não amar, devolvemos seu dinheiro.</h3>
-        <p class="guarantee-text">Você tem 15 dias para acessar o material, aplicar nas suas aulas e ver os resultados. Se por qualquer motivo sentir que não valeu, basta enviar um e-mail e devolvemos 100% do valor. Sem perguntas, sem burocracia. O risco é todo nosso.</p>
       </div>
     </div>
   </div>
@@ -1947,6 +1983,25 @@
         <p class="micro-text" style="margin-top:10px;">Acesso imediato · Garantia de 15 dias</p>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- 12. GUARANTEE -->
+<section class="section guarantee-section">
+  <div class="container">
+    <div class="guarantee-box">
+      <div class="guarantee-icon-wrap">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <polyline points="9,12 11,14 15,10"/>
+        </svg>
+      </div>
+      <div class="guarantee-content">
+        <div class="guarantee-badge">🛡️ GARANTIA TOTAL</div>
+        <h3 class="guarantee-title"><span class="es">Sin riesgo.</span> 15 dias para testar. Se não amar, devolvemos seu dinheiro.</h3>
+        <p class="guarantee-text">Você tem 15 dias para acessar o material, aplicar nas suas aulas e ver os resultados. Se por qualquer motivo sentir que não valeu, basta enviar um e-mail e devolvemos 100% do valor. Sem perguntas, sem burocracia. O risco é todo nosso.</p>
+      </div>
     </div>
   </div>
 </section>
