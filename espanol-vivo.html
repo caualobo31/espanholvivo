@@ -1067,7 +1067,7 @@
 
   .bonus-value {
     font-size: 12px;
-    color: rgba(255,255,255,0.40);
+    color: #F87171;
     text-decoration: line-through;
     margin-bottom: 8px;
   }
@@ -1115,7 +1115,7 @@
   .anchor-item-price {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    color: var(--text-muted);
+    color: var(--red);
     text-decoration: line-through;
     font-size: 14px;
   }
@@ -1285,10 +1285,60 @@
 
   .plan-price-old {
     font-size: 13px;
-    color: var(--text-muted);
+    color: var(--red);
     text-decoration: line-through;
     margin-bottom: 4px;
   }
+
+  .plan-installments {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .plan-unavailable {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    opacity: 0.55;
+  }
+
+  .plan-x {
+    width: 18px;
+    height: 18px;
+    background: rgba(220,38,38,0.10);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .plan-social-proof {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(181,69,27,0.07);
+    border: 1px solid rgba(181,69,27,0.18);
+    border-radius: var(--radius);
+    padding: 20px 28px;
+    margin-top: 32px;
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .plan-social-proof-icon { font-size: 32px; flex-shrink: 0; }
+  .plan-social-proof p { font-size: 15px; color: var(--text); line-height: 1.5; }
+  .plan-social-proof strong { color: var(--primary); }
 
   .plan-price {
     font-family: 'Outfit', sans-serif;
@@ -1542,7 +1592,7 @@
           <div class="video-play-circle">
             <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
           </div>
-          <p class="video-thumb-title">Veja como funciona antes de decidir</p>
+          <p class="video-thumb-title">Veja como funciona</p>
           <p class="video-thumb-sub">2 minutos que vão transformar a forma como você prepara suas aulas</p>
         </div>
       </div>
@@ -2058,6 +2108,30 @@
             <span class="plan-check"><svg aria-hidden="true"><use href="#icon-check"/></svg></span>
             PDF para download
           </li>
+          <li class="plan-unavailable">
+            <span class="plan-x">✕</span>
+            +300 dinâmicas extras (600 no total)
+          </li>
+          <li class="plan-unavailable">
+            <span class="plan-x">✕</span>
+            250+ Flashcards de Vocabulário
+          </li>
+          <li class="plan-unavailable">
+            <span class="plan-x">✕</span>
+            Guia de Planejamento Semestral
+          </li>
+          <li class="plan-unavailable">
+            <span class="plan-x">✕</span>
+            Kit de Aulas de Emergência
+          </li>
+          <li class="plan-unavailable">
+            <span class="plan-x">✕</span>
+            Slides Prontos para Aula
+          </li>
+          <li class="plan-unavailable">
+            <span class="plan-x">✕</span>
+            Suporte prioritário
+          </li>
         </ul>
         <a href="#" class="btn-basic">Começar Agora →</a>
       </div>
@@ -2066,7 +2140,8 @@
         <div class="plan-badge">⭐ MAIS ESCOLHIDO</div>
         <div class="plan-name">Plano Premium</div>
         <div class="plan-price-old">De R$375,60</div>
-        <div class="plan-price" style="color:var(--primary);"><span>R$</span>29</div>
+        <div class="plan-price" style="color:var(--primary);"><span>R$</span>27</div>
+        <div class="plan-installments">ou 6x de R$5,31 no cartão</div>
         <ul class="plan-features">
           <li>
             <span class="plan-check"><svg aria-hidden="true"><use href="#icon-check"/></svg></span>
@@ -2101,6 +2176,10 @@
         <p class="micro-text" style="margin-top:10px;">Acesso imediato · Garantia de 15 dias</p>
       </div>
 
+    </div>
+    <div class="plan-social-proof">
+      <span class="plan-social-proof-icon">🏆</span>
+      <p><strong>94% das professoras escolhem o Plano Premium</strong> — e já aplicam as dinâmicas na mesma semana da compra.</p>
     </div>
   </div>
 </section>
