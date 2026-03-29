@@ -525,6 +525,30 @@
 
   .hiw-card-img-placeholder span { font-size: 28px; }
 
+  .hiw-card-img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 20px 16px;
+    background: linear-gradient(to top, rgba(0,0,0,0.80) 0%, transparent 100%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hiw-card-img-overlay .hiw-card-emoji {
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+
+  .hiw-card-img-overlay .hiw-card-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--white);
+  }
+
   .hiw-badge {
     display: inline-flex;
     align-items: center;
@@ -1595,12 +1619,12 @@
 
       <div class="hiw-card">
         <div class="hiw-card-img-wrap">
-          <img src="images/dinamicas/detective.jpg" alt="El Detective" class="hiw-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="hiw-card-img-placeholder" style="display:none;"><span>🖼️</span>images/dinamicas/detective.jpg</div>
-        </div>
-        <div class="hiw-card-header">
-          <span class="hiw-card-emoji">🎭</span>
-          <div class="hiw-card-title">El Detective</div>
+          <img src="images/dinamicas/detective.png" alt="El Detective" class="hiw-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="hiw-card-img-placeholder" style="display:none;"><span>🖼️</span>images/dinamicas/detective.png</div>
+          <div class="hiw-card-img-overlay">
+            <span class="hiw-card-emoji">🎭</span>
+            <div class="hiw-card-title">El Detective</div>
+          </div>
         </div>
         <div class="hiw-card-body">
           <div class="hiw-meta">
@@ -1624,12 +1648,12 @@
 
       <div class="hiw-card">
         <div class="hiw-card-img-wrap">
-          <img src="images/dinamicas/restaurante.jpg" alt="El Restaurante" class="hiw-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="hiw-card-img-placeholder" style="display:none;"><span>🖼️</span>images/dinamicas/restaurante.jpg</div>
-        </div>
-        <div class="hiw-card-header">
-          <span class="hiw-card-emoji">🍽️</span>
-          <div class="hiw-card-title">El Restaurante</div>
+          <img src="images/dinamicas/restaurante.png" alt="El Restaurante" class="hiw-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="hiw-card-img-placeholder" style="display:none;"><span>🖼️</span>images/dinamicas/restaurante.png</div>
+          <div class="hiw-card-img-overlay">
+            <span class="hiw-card-emoji">🍽️</span>
+            <div class="hiw-card-title">El Restaurante</div>
+          </div>
         </div>
         <div class="hiw-card-body">
           <div class="hiw-meta">
@@ -1653,12 +1677,12 @@
 
       <div class="hiw-card">
         <div class="hiw-card-img-wrap">
-          <img src="images/dinamicas/debate.jpg" alt="Debate de Ciudades" class="hiw-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="hiw-card-img-placeholder" style="display:none;"><span>🖼️</span>images/dinamicas/debate.jpg</div>
-        </div>
-        <div class="hiw-card-header">
-          <span class="hiw-card-emoji">⚔️</span>
-          <div class="hiw-card-title">Debate de Ciudades</div>
+          <img src="images/dinamicas/debate.png" alt="Debate de Ciudades" class="hiw-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="hiw-card-img-placeholder" style="display:none;"><span>🖼️</span>images/dinamicas/debate.png</div>
+          <div class="hiw-card-img-overlay">
+            <span class="hiw-card-emoji">⚔️</span>
+            <div class="hiw-card-title">Debate de Ciudades</div>
+          </div>
         </div>
         <div class="hiw-card-body">
           <div class="hiw-meta">
