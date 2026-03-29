@@ -145,6 +145,9 @@
     font-weight: 600;
     font-size: 14px;
     letter-spacing: 0.01em;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
   }
 
   .urgency-bar span.countdown {
@@ -1344,6 +1347,23 @@
     .hiw-card-body { padding: 18px 18px 22px; }
   }
 </style>
+
+<script>
+  window.pixelId = "69c96f853dce48227cc82ae8";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
+
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
 </head>
 <body>
 <svg style="display:none" aria-hidden="true">
@@ -1387,7 +1407,6 @@
 <section class="section identification section-warm">
   <div class="container">
     <div class="section-header">
-      <div class="badge">💬 Identificação</div>
       <h2>Na sua rotina também é assim?</h2>
     </div>
     <div class="ident-grid">
