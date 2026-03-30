@@ -2113,7 +2113,7 @@
       </div>
       <p class="anchor-headline">Hoje, você leva TUDO <span>quase de graça</span></p>
       <div style="text-align:center;">
-        <a href="https://pay.wiapy.com/Upvzpf7Jhb" class="btn btn-premium" target="_blank" rel="noopener">Quero Acessar Agora →</a>
+        <a href="https://pay.wiapy.com/Upvzpf7Jhb" class="btn btn-premium checkout-link" target="_blank" rel="noopener">Quero Acessar Agora →</a>
         <p class="micro-text">Acesso imediato · Garantia de 15 dias</p>
       </div>
     </div>
@@ -2171,7 +2171,7 @@
             Suporte prioritário
           </li>
         </ul>
-        <a href="https://pay.wiapy.com/whWRDUnC4y" class="btn-basic" target="_blank" rel="noopener">Começar Agora →</a>
+        <a href="https://pay.wiapy.com/whWRDUnC4y" class="btn-basic checkout-link" target="_blank" rel="noopener">Começar Agora →</a>
         <p style="font-size:13px;color:var(--text-muted);text-align:center;margin-top:14px;">🏆 <strong>94% das professoras escolhem o Plano Premium</strong> e já aplicam as dinâmicas na mesma semana da compra.</p>
       </div>
 
@@ -2211,7 +2211,7 @@
             Atualizações gratuitas
           </li>
         </ul>
-        <a href="https://pay.wiapy.com/Upvzpf7Jhb" class="btn btn-premium" style="width:100%;justify-content:center;" target="_blank" rel="noopener">Quero o Premium →</a>
+        <a href="https://pay.wiapy.com/Upvzpf7Jhb" class="btn btn-premium checkout-link" style="width:100%;justify-content:center;" target="_blank" rel="noopener">Quero o Premium →</a>
         <p class="micro-text" style="margin-top:10px;">Acesso imediato · Garantia de 15 dias</p>
       </div>
 
@@ -2416,6 +2416,76 @@
     s.zIndex = '999999';
     s.setProperty('position', 'fixed', 'important');
     s.setProperty('top', '0', 'important');
+  })();
+</script>
+
+<script>
+  // UTM pass-through to checkout links
+  // Reads params from: 1) current URL, 2) Utmify localStorage
+  (function() {
+    var UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','src','sck'];
+
+    function getUrlParams() {
+      var params = {};
+      try {
+        var search = window.location.search;
+        if (!search) return params;
+        search.slice(1).split('&').forEach(function(pair) {
+          var parts = pair.split('=');
+          if (parts.length === 2) params[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
+        });
+      } catch(e) {}
+      return params;
+    }
+
+    function getUtmifyStorage() {
+      var params = {};
+      try {
+        var raw = localStorage.getItem('utmify_utms') || localStorage.getItem('utmify') || '';
+        if (!raw) return params;
+        var data = JSON.parse(raw);
+        UTM_KEYS.forEach(function(k) { if (data[k]) params[k] = data[k]; });
+      } catch(e) {}
+      return params;
+    }
+
+    function buildQueryString(params) {
+      return Object.keys(params).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+      }).join('&');
+    }
+
+    function appendParamsToUrl(url, params) {
+      if (!Object.keys(params).length) return url;
+      var qs = buildQueryString(params);
+      return url + (url.indexOf('?') >= 0 ? '&' : '?') + qs;
+    }
+
+    function applyToLinks() {
+      var urlParams = getUrlParams();
+      var storageParams = getUtmifyStorage();
+      // URL params take precedence over stored ones
+      var merged = Object.assign({}, storageParams, urlParams);
+      // Filter to only UTM + tracking keys
+      var tracking = {};
+      UTM_KEYS.forEach(function(k) { if (merged[k]) tracking[k] = merged[k]; });
+      if (!Object.keys(tracking).length) return;
+
+      document.querySelectorAll('a.checkout-link').forEach(function(link) {
+        var base = link.getAttribute('href');
+        if (!base || base.charAt(0) === '#') return;
+        link.setAttribute('href', appendParamsToUrl(base, tracking));
+      });
+    }
+
+    // Run on DOM ready and again after Utmify scripts may have loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyToLinks);
+    } else {
+      applyToLinks();
+    }
+    // Run again after a short delay to catch async Utmify storage writes
+    setTimeout(applyToLinks, 1500);
   })();
 </script>
 
