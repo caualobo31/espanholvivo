@@ -1008,6 +1008,32 @@
   .testimonial-author {
     border-top: 1px solid var(--border);
     padding-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-photo {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid var(--border);
+    background: var(--bg-warm);
+  }
+
+  .author-photo-placeholder {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--bg-warm), var(--border));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border: 2px solid var(--border);
   }
 
   .author-name {
@@ -1607,7 +1633,7 @@
 <section class="section identification section-warm">
   <div class="container">
     <div class="section-header">
-      <h2>Na sua rotina também é assim?</h2>
+      <h2>Na sua rotina <span style="color:var(--primary);">também é assim</span>?</h2>
       <p>Se pelo menos uma situação parece familiar, o Español Vivo foi feito pra você.</p>
     </div>
     <div class="ident-grid">
@@ -1636,7 +1662,7 @@
 <section class="section problem-section section-warm">
   <div class="container">
     <div class="section-header">
-      <h2 style="color:var(--dark);">O ciclo que está te esgotando</h2>
+      <h2 style="color:var(--dark);">O ciclo que está <span style="color:var(--red);">te esgotando</span></h2>
       <p>Você não está cansada por falta de dedicação, está sem a ferramenta certa.</p>
     </div>
 
@@ -1752,7 +1778,7 @@
   <div class="container">
     <div class="section-header">
       <div class="hiw-badge">🎯 NA PRÁTICA</div>
-      <h2>Veja como uma dinâmica transforma sua aula</h2>
+      <h2>Veja como uma dinâmica <span style="color:var(--primary);">transforma sua aula</span></h2>
       <p>Cada dinâmica do Español Vivo vem pronta pra aplicar. Veja exemplos reais do material:</p>
     </div>
     <div class="hiw-cards">
@@ -1954,7 +1980,7 @@
   <div class="container">
     <div class="section-header">
       <div class="badge">⭐ QUEM JÁ USA, APROVA</div>
-      <h2>Veja o que professores como você estão dizendo</h2>
+      <h2>Veja o que <span style="color:var(--primary);">professores como você</span> estão dizendo</h2>
       <p>Resultados reais de quem já aplica as dinâmicas em sala de aula.</p>
     </div>
     <div class="testimonials-grid">
@@ -1962,24 +1988,36 @@
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">Eu adaptava material de inglês pro espanhol toda semana. Agora tenho tudo pronto e meus alunos finalmente participam de verdade.</p>
         <div class="testimonial-author">
-          <div class="author-name">Professora Mariana</div>
-          <div class="author-info">Curitiba, PR · Escola estadual</div>
+          <img src="images/depoimentos/mariana.png" alt="Professora Mariana" class="author-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="author-photo-placeholder" style="display:none;">👩</div>
+          <div>
+            <div class="author-name">Professora Mariana</div>
+            <div class="author-info">Curitiba, PR · Escola estadual</div>
+          </div>
         </div>
       </div>
       <div class="testimonial-card">
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">Meus alunos achavam espanhol fácil e não davam valor. Depois que comecei a usar as dinâmicas, eles viram que o idioma é muito mais que "portunhol".</p>
         <div class="testimonial-author">
-          <div class="author-name">Professor Lucas</div>
-          <div class="author-info">Campinas, SP · Curso de idiomas</div>
+          <img src="images/depoimentos/lucas.png" alt="Professor Lucas" class="author-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="author-photo-placeholder" style="display:none;">👨</div>
+          <div>
+            <div class="author-name">Professor Lucas</div>
+            <div class="author-info">Campinas, SP · Curso de idiomas</div>
+          </div>
         </div>
       </div>
       <div class="testimonial-card">
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">Sou a única professora de espanhol da escola. Me sentia sozinha. Esse material me deu segurança pra dar aulas que eu tenho orgulho.</p>
         <div class="testimonial-author">
-          <div class="author-name">Professora Débora</div>
-          <div class="author-info">Salvador, BA · Escola particular</div>
+          <img src="images/depoimentos/debora.png" alt="Professora Débora" class="author-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="author-photo-placeholder" style="display:none;">👩</div>
+          <div>
+            <div class="author-name">Professora Débora</div>
+            <div class="author-info">Salvador, BA · Escola particular</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1991,7 +2029,7 @@
   <div class="container">
     <div class="section-header">
       <div class="badge" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.80);">🎁 BÔNUS EXCLUSIVOS</div>
-      <h2>¡Espera, hay más! E tem mais! Leve também:</h2>
+      <h2>¡Espera, hay más! E tem mais! <span style="color:var(--yellow);">Leve também:</span></h2>
       <p style="color:rgba(255,255,255,0.60);">Todos os bônus abaixo estão inclusos no Plano Premium sem custo extra.</p>
     </div>
     <div class="bonus-grid">
@@ -2039,7 +2077,7 @@
 <section class="section anchor-section section-warm">
   <div class="container">
     <div class="section-header">
-      <h2>Veja tudo que você está levando:</h2>
+      <h2>Veja <span style="color:var(--primary);">tudo</span> que você está levando:</h2>
       <p>Some o valor separado de cada item e veja o quanto você está economizando.</p>
     </div>
     <div class="anchor-box">
@@ -2087,7 +2125,7 @@
   <div class="container">
     <div class="section-header">
       <div class="badge">💳 PLANOS</div>
-      <h2>Escolha o plano ideal para você</h2>
+      <h2>Escolha o <span style="color:var(--primary);">plano ideal</span> para você</h2>
       <p>Acesso imediato após a compra. Sem mensalidade, sem renovação.</p>
     </div>
     <div class="plans-grid">
@@ -2208,7 +2246,7 @@
   <div class="container">
     <div class="section-header">
       <div class="badge">❓ DÚVIDAS</div>
-      <h2>Perguntas Frequentes</h2>
+      <h2>Perguntas <span style="color:var(--primary);">Frequentes</span></h2>
       <p>Tire suas dúvidas antes de decidir.</p>
     </div>
     <div class="faq-list">
