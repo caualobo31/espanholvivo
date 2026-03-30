@@ -2405,5 +2405,22 @@
   })();
 </script>
 
+<script>
+  // Force urgency bar to stay fixed — runs last, after all external scripts
+  (function() {
+    var bar = document.querySelector('.urgency-bar');
+    if (!bar) return;
+    var s = bar.style;
+    s.position = 'fixed';
+    s.top = '0';
+    s.left = '0';
+    s.right = '0';
+    s.width = '100%';
+    s.zIndex = '999999';
+    s.setProperty('position', 'fixed', 'important');
+    s.setProperty('top', '0', 'important');
+  })();
+</script>
+
 </body>
 </html>
