@@ -550,7 +550,7 @@
       </div>
       <p class="anchor-headline">Hoje, você leva TUDO <span>quase de graça</span></p>
       <div style="text-align:center;">
-        <a href="https://pay.wiapy.com/Upvzpf7Jhb" class="btn btn-premium checkout-link" target="_blank" rel="noopener">Quero Acessar Agora →</a>
+        <a href="https://pay.wiapy.com/Upvzpf7Jhb" class="btn btn-premium checkout-link">Quero Acessar Agora →</a>
         <p class="micro-text">Acesso imediato · Garantia de 15 dias</p>
       </div>
     </div>
@@ -608,7 +608,7 @@
             Suporte prioritário
           </li>
         </ul>
-        <a href="https://pay.wiapy.com/whWRDUnC4y" class="btn-basic checkout-link" target="_blank" rel="noopener">Começar Agora →</a>
+        <a href="https://pay.wiapy.com/whWRDUnC4y" class="btn-basic checkout-link">Começar Agora →</a>
         <p style="font-size:13px;color:var(--text-muted);text-align:center;margin-top:14px;">🏆 <strong>94% das professoras escolhem o Plano Premium</strong> e já aplicam as dinâmicas na mesma semana da compra.</p>
       </div>
 
@@ -648,7 +648,7 @@
             Atualizações gratuitas
           </li>
         </ul>
-        <a href="https://pay.wiapy.com/Upvzpf7Jhb" class="btn btn-premium checkout-link" style="width:100%;justify-content:center;" target="_blank" rel="noopener">Quero o Premium →</a>
+        <a href="https://pay.wiapy.com/Upvzpf7Jhb" class="btn btn-premium checkout-link" style="width:100%;justify-content:center;">Quero o Premium →</a>
         <p class="micro-text" style="margin-top:10px;">Acesso imediato · Garantia de 15 dias</p>
       </div>
 
@@ -863,72 +863,75 @@
 </script>
 
 <script>
-  // UTM pass-through to checkout links
-  // Reads params from: 1) current URL, 2) Utmify localStorage
+  // Redirect all checkout links via window.location.href
+  // Passes ALL params from window.location.search + Utmify localStorage
   (function() {
-    var UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','src','sck'];
-
-    function getUrlParams() {
+    function getAllParams() {
       var params = {};
-      try {
-        var search = window.location.search;
-        if (!search) return params;
-        search.slice(1).split('&').forEach(function(pair) {
-          var parts = pair.split('=');
-          if (parts.length === 2) params[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
-        });
-      } catch(e) {}
-      return params;
-    }
-
-    function getUtmifyStorage() {
-      var params = {};
+      // 1. Utmify localStorage (base layer)
       try {
         var raw = localStorage.getItem('utmify_utms') || localStorage.getItem('utmify') || '';
-        if (!raw) return params;
-        var data = JSON.parse(raw);
-        UTM_KEYS.forEach(function(k) { if (data[k]) params[k] = data[k]; });
+        if (raw) {
+          var data = JSON.parse(raw);
+          Object.keys(data).forEach(function(k) { if (data[k]) params[k] = data[k]; });
+        }
+      } catch(e) {}
+      // 2. Current URL params override stored ones
+      try {
+        var search = window.location.search;
+        if (search) {
+          search.slice(1).split('&').forEach(function(pair) {
+            var idx = pair.indexOf('=');
+            if (idx > 0) {
+              params[decodeURIComponent(pair.slice(0, idx))] = decodeURIComponent(pair.slice(idx + 1));
+            }
+          });
+        }
       } catch(e) {}
       return params;
     }
 
-    function buildQueryString(params) {
-      return Object.keys(params).map(function(k) {
+    function buildCheckoutUrl(base) {
+      var params = getAllParams();
+      var keys = Object.keys(params);
+      if (!keys.length) return base;
+      var qs = keys.map(function(k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
       }).join('&');
+      return base + (base.indexOf('?') >= 0 ? '&' : '?') + qs;
     }
 
-    function appendParamsToUrl(url, params) {
-      if (!Object.keys(params).length) return url;
-      var qs = buildQueryString(params);
-      return url + (url.indexOf('?') >= 0 ? '&' : '?') + qs;
-    }
+    // Expose globally so popup script can use it
+    window._buildCheckoutUrl = buildCheckoutUrl;
 
-    function applyToLinks() {
-      var urlParams = getUrlParams();
-      var storageParams = getUtmifyStorage();
-      // URL params take precedence over stored ones
-      var merged = Object.assign({}, storageParams, urlParams);
-      // Filter to only UTM + tracking keys
-      var tracking = {};
-      UTM_KEYS.forEach(function(k) { if (merged[k]) tracking[k] = merged[k]; });
-      if (!Object.keys(tracking).length) return;
-
+    function applyAndIntercept() {
       document.querySelectorAll('a.checkout-link').forEach(function(link) {
-        var base = link.getAttribute('href');
+        var base = link.getAttribute('data-base-href') || link.getAttribute('href');
         if (!base || base.charAt(0) === '#') return;
-        link.setAttribute('href', appendParamsToUrl(base, tracking));
+        // Store original href once to avoid double-appending on re-runs
+        if (!link.getAttribute('data-base-href')) {
+          link.setAttribute('data-base-href', base);
+        }
+        link.setAttribute('href', buildCheckoutUrl(base));
+        // Intercept click (skip basic button — handled by upsell popup)
+        if (!link._utmIntercepted && !link.classList.contains('btn-basic')) {
+          link._utmIntercepted = true;
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            var href = buildCheckoutUrl(link.getAttribute('data-base-href') || base);
+            window.location.href = href;
+          });
+        }
       });
     }
 
-    // Run on DOM ready and again after Utmify scripts may have loaded
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', applyToLinks);
+      document.addEventListener('DOMContentLoaded', applyAndIntercept);
     } else {
-      applyToLinks();
+      applyAndIntercept();
     }
-    // Run again after a short delay to catch async Utmify storage writes
-    setTimeout(applyToLinks, 1500);
+    // Re-run after Utmify async storage writes
+    setTimeout(applyAndIntercept, 1500);
   })();
 </script>
 
@@ -946,7 +949,7 @@
       <div class="upsell-price-note">à vista · acesso imediato · garantia de 15 dias</div>
     </div>
     <p class="upsell-copy">Aproveite agora e leve o plano completo com muito mais dinâmicas, mais variedade e mais recursos para suas aulas — por um valor menor do que o básico custaria depois.</p>
-    <a id="upsellAccept" href="https://pay.wiapy.com/eqCjrBcFH" class="upsell-btn-accept checkout-link" target="_blank" rel="noopener">👉 Quero essa oferta</a>
+    <a id="upsellAccept" href="https://pay.wiapy.com/eqCjrBcFH" class="upsell-btn-accept checkout-link">👉 Quero essa oferta</a>
     <button id="upsellDecline" class="upsell-btn-decline">Continuar com o plano básico</button>
   </div>
 </div>
@@ -995,7 +998,7 @@
     function close(goToUrl) {
       overlay.style.display = 'none';
       overlay.setAttribute('aria-hidden', 'true');
-      if (goToUrl) window.open(goToUrl, '_blank', 'noopener');
+      if (goToUrl) window.location.href = goToUrl;
     }
 
     // Intercept basic plan button
@@ -1011,26 +1014,24 @@
       // anchor navigates normally (target=_blank)
     });
 
-    // "Continuar com básico" — navigate to basic URL (UTMs already applied)
+    function basicUrl() {
+      var base = basicBtn.getAttribute('data-base-href') || basicBtn.getAttribute('href') || 'https://pay.wiapy.com/whWRDUnC4y';
+      return window._buildCheckoutUrl ? window._buildCheckoutUrl(base) : base;
+    }
+
+    // "Continuar com básico" — navigate to basic URL with all URL params
     decline.addEventListener('click', function() {
-      var url = basicBtn.getAttribute('href') || 'https://pay.wiapy.com/whWRDUnC4y';
-      close(url);
+      close(basicUrl());
     });
 
     // Click outside modal = decline
     overlay.addEventListener('click', function(e) {
-      if (e.target === overlay) {
-        var url = basicBtn.getAttribute('href') || 'https://pay.wiapy.com/whWRDUnC4y';
-        close(url);
-      }
+      if (e.target === overlay) { close(basicUrl()); }
     });
 
     // ESC = decline
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && overlay.style.display !== 'none') {
-        var url = basicBtn.getAttribute('href') || 'https://pay.wiapy.com/whWRDUnC4y';
-        close(url);
-      }
+      if (e.key === 'Escape' && overlay.style.display !== 'none') { close(basicUrl()); }
     });
   })();
 </script>
