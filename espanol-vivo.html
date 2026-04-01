@@ -933,6 +933,108 @@
 </script>
 
 
+<!-- UPSELL POPUP -->
+<div id="upsellOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Oferta especial">
+  <div id="upsellModal">
+    <div class="upsell-header">
+      <p class="upsell-eyebrow">🔥 Oferta exclusiva</p>
+      <h3 class="upsell-headline">Espere! Liberamos um desconto exclusivo pra você 👇</h3>
+    </div>
+    <div class="upsell-price-block">
+      <div class="upsell-price-old">De R$27,00</div>
+      <div class="upsell-price-new"><span>R$</span>19<span class="upsell-cents">,90</span></div>
+      <div class="upsell-price-note">à vista · acesso imediato · garantia de 15 dias</div>
+    </div>
+    <p class="upsell-copy">Aproveite agora e leve o plano completo com muito mais dinâmicas, mais variedade e mais recursos para suas aulas — por um valor menor do que o básico custaria depois.</p>
+    <a id="upsellAccept" href="https://pay.wiapy.com/Upvzpf7Jhb" class="upsell-btn-accept checkout-link" target="_blank" rel="noopener">👉 Quero essa oferta</a>
+    <button id="upsellDecline" class="upsell-btn-decline">Continuar com o plano básico</button>
+  </div>
+</div>
+
+<style>
+#upsellOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:99999;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px)}
+#upsellOverlay.visible{display:flex}
+#upsellModal{background:#fff;border-radius:20px;box-shadow:0 24px 80px rgba(0,0,0,.28);max-width:440px;width:100%;padding:32px 28px 28px;text-align:center;animation:upsellIn .25s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes upsellIn{from{opacity:0;transform:scale(.88) translateY(16px)}to{opacity:1;transform:none}}
+.upsell-eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);margin-bottom:8px}
+.upsell-headline{font-family:'Outfit',system-ui,sans-serif;font-size:22px;font-weight:800;line-height:1.25;color:var(--dark);margin-bottom:20px}
+.upsell-price-block{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid #86efac;border-radius:14px;padding:18px 20px 14px;margin-bottom:20px}
+.upsell-price-old{font-size:15px;color:#9ca3af;text-decoration:line-through;margin-bottom:4px}
+.upsell-price-new{font-family:'Outfit',system-ui,sans-serif;font-size:58px;font-weight:900;line-height:1;color:#16a34a;letter-spacing:-.03em}
+.upsell-price-new span:first-child{font-size:24px;font-weight:700;vertical-align:top;margin-top:10px;display:inline-block}
+.upsell-cents{font-size:28px;font-weight:700}
+.upsell-price-note{font-size:12px;color:#6b7280;margin-top:8px}
+.upsell-copy{font-size:14px;line-height:1.6;color:var(--text-muted);margin-bottom:24px}
+.upsell-btn-accept{display:block;width:100%;padding:17px 24px;background:#16a34a;color:#fff;font-family:'Outfit',system-ui,sans-serif;font-size:18px;font-weight:800;border:none;border-radius:100px;cursor:pointer;text-decoration:none;box-shadow:0 4px 20px rgba(22,163,74,.35);transition:background .18s,transform .18s;margin-bottom:12px}
+.upsell-btn-accept:hover{background:#15803d;transform:translateY(-2px)}
+.upsell-btn-decline{display:block;width:100%;padding:12px;background:none;border:none;color:#9ca3af;font-size:14px;cursor:pointer;transition:color .18s}
+.upsell-btn-decline:hover{color:var(--text)}
+@media(max-width:480px){#upsellModal{padding:24px 20px 20px}.upsell-headline{font-size:19px}.upsell-price-new{font-size:50px}}
+</style>
+
+<script>
+  (function() {
+    var overlay = document.getElementById('upsellOverlay');
+    var modal   = document.getElementById('upsellModal');
+    var accept  = document.getElementById('upsellAccept');
+    var decline = document.getElementById('upsellDecline');
+    var basicBtn = document.querySelector('a.btn-basic.checkout-link');
+    if (!overlay || !basicBtn) return;
+
+    var shown = false;
+
+    function open() {
+      if (shown) return;
+      shown = true;
+      overlay.style.display = 'flex';
+      overlay.setAttribute('aria-hidden', 'false');
+      // small rAF so CSS transition triggers
+      requestAnimationFrame(function() { modal.style.animation = 'upsellIn .25s cubic-bezier(.34,1.56,.64,1) both'; });
+    }
+
+    function close(goToUrl) {
+      overlay.style.display = 'none';
+      overlay.setAttribute('aria-hidden', 'true');
+      if (goToUrl) window.open(goToUrl, '_blank', 'noopener');
+    }
+
+    // Intercept basic plan button
+    basicBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      open();
+    });
+
+    // "Quero essa oferta" — href already updated by UTM script; let anchor do its job
+    accept.addEventListener('click', function() {
+      overlay.style.display = 'none';
+      overlay.setAttribute('aria-hidden', 'true');
+      // anchor navigates normally (target=_blank)
+    });
+
+    // "Continuar com básico" — navigate to basic URL (UTMs already applied)
+    decline.addEventListener('click', function() {
+      var url = basicBtn.getAttribute('href') || 'https://pay.wiapy.com/whWRDUnC4y';
+      close(url);
+    });
+
+    // Click outside modal = decline
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        var url = basicBtn.getAttribute('href') || 'https://pay.wiapy.com/whWRDUnC4y';
+        close(url);
+      }
+    });
+
+    // ESC = decline
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.style.display !== 'none') {
+        var url = basicBtn.getAttribute('href') || 'https://pay.wiapy.com/whWRDUnC4y';
+        close(url);
+      }
+    });
+  })();
+</script>
+
 <script>
   window.pixelId = "69c96f853dce48227cc82ae8";
   var a = document.createElement("script");
