@@ -985,15 +985,16 @@
     if (!overlay || !basicBtn) return;
 
     var shown = false;
-    var openedAt = 0;
 
     function open() {
       if (shown) return;
       shown = true;
-      openedAt = Date.now();
+      // pointer-events:none blocks ghost clicks at CSS level for 600ms
+      overlay.style.pointerEvents = 'none';
       overlay.style.display = 'flex';
       overlay.setAttribute('aria-hidden', 'false');
-      requestAnimationFrame(function() { modal.style.animation = 'upsellIn .25s cubic-bezier(.34,1.56,.64,1) both'; });
+      modal.style.animation = 'upsellIn .25s cubic-bezier(.34,1.56,.64,1) both';
+      setTimeout(function() { overlay.style.pointerEvents = ''; }, 600);
     }
 
     function close(goToUrl) {
@@ -1007,14 +1008,14 @@
       return window._buildCheckoutUrl ? window._buildCheckoutUrl(base) : base;
     }
 
-    // Intercept basic plan button
+    // Intercept basic plan button — prevent default + stop all propagation
     basicBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      e.stopPropagation();
+      e.stopImmediatePropagation();
       open();
     });
 
-    // "Quero essa oferta" — UTM interceptor handles navigation via window.location.href
+    // "Quero essa oferta" — UTM interceptor handles navigation
     accept.addEventListener('click', function(e) {
       e.stopPropagation();
       overlay.style.display = 'none';
@@ -1027,11 +1028,9 @@
       close(basicUrl());
     });
 
-    // Click outside modal — guard 400ms against ghost clicks on mobile
+    // Click outside modal (only reachable after 600ms pointer-events guard)
     overlay.addEventListener('click', function(e) {
-      if (e.target === overlay && Date.now() - openedAt > 400) {
-        close(basicUrl());
-      }
+      if (e.target === overlay) { close(basicUrl()); }
     });
 
     // ESC
