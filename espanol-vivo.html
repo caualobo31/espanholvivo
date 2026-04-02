@@ -985,13 +985,14 @@
     if (!overlay || !basicBtn) return;
 
     var shown = false;
+    var openedAt = 0;
 
     function open() {
       if (shown) return;
       shown = true;
+      openedAt = Date.now();
       overlay.style.display = 'flex';
       overlay.setAttribute('aria-hidden', 'false');
-      // small rAF so CSS transition triggers
       requestAnimationFrame(function() { modal.style.animation = 'upsellIn .25s cubic-bezier(.34,1.56,.64,1) both'; });
     }
 
@@ -1001,35 +1002,39 @@
       if (goToUrl) window.location.href = goToUrl;
     }
 
-    // Intercept basic plan button
-    basicBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      open();
-    });
-
-    // "Quero essa oferta" — href already updated by UTM script; let anchor do its job
-    accept.addEventListener('click', function() {
-      overlay.style.display = 'none';
-      overlay.setAttribute('aria-hidden', 'true');
-      // anchor navigates normally (target=_blank)
-    });
-
     function basicUrl() {
       var base = basicBtn.getAttribute('data-base-href') || basicBtn.getAttribute('href') || 'https://pay.wiapy.com/whWRDUnC4y';
       return window._buildCheckoutUrl ? window._buildCheckoutUrl(base) : base;
     }
 
-    // "Continuar com básico" — navigate to basic URL with all URL params
-    decline.addEventListener('click', function() {
+    // Intercept basic plan button
+    basicBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      open();
+    });
+
+    // "Quero essa oferta" — UTM interceptor handles navigation via window.location.href
+    accept.addEventListener('click', function(e) {
+      e.stopPropagation();
+      overlay.style.display = 'none';
+      overlay.setAttribute('aria-hidden', 'true');
+    });
+
+    // "Continuar com básico"
+    decline.addEventListener('click', function(e) {
+      e.stopPropagation();
       close(basicUrl());
     });
 
-    // Click outside modal = decline
+    // Click outside modal — guard 400ms against ghost clicks on mobile
     overlay.addEventListener('click', function(e) {
-      if (e.target === overlay) { close(basicUrl()); }
+      if (e.target === overlay && Date.now() - openedAt > 400) {
+        close(basicUrl());
+      }
     });
 
-    // ESC = decline
+    // ESC
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && overlay.style.display !== 'none') { close(basicUrl()); }
     });
