@@ -26,6 +26,8 @@
 .plan-social-proof{font-size:13px;color:var(--text-muted);text-align:center;margin-top:10px}
 @keyframes premiumGlow{0%,100%{box-shadow:0 4px 24px rgba(181,69,27,0.40)}50%{box-shadow:0 6px 48px rgba(181,69,27,0.60),0 0 0 5px rgba(181,69,27,0.10)}}
 .plan-card.featured .btn-premium{animation:premiumGlow 2.5s ease-in-out infinite}
+.plan-card.featured::before{content:'';position:absolute;inset:-2px;border-radius:22px;background:linear-gradient(135deg,rgba(181,69,27,0.55),rgba(212,84,42,0.15),rgba(181,69,27,0.55));z-index:-1;animation:featuredShimmer 3s ease-in-out infinite}
+@keyframes featuredShimmer{0%,100%{opacity:0.6}50%{opacity:1}}
 @media(max-width:640px){.plan-card.featured{padding:32px 22px!important}}
 </style>
 
@@ -625,7 +627,6 @@
           </li>
         </ul>
         <a href="#" class="btn-basic">Começar Agora →</a>
-        <p class="plan-warning">⚠️ Você vai perder 6 recursos inclusos no Premium</p>
         <p style="font-size:13px;color:var(--text-muted);text-align:center;margin-top:14px;">🏆 <strong>94% das professoras escolhem o Plano Premium</strong> e já aplicam as dinâmicas na mesma semana da compra.</p>
       </div>
 
@@ -635,7 +636,7 @@
         <div class="plan-price-old">De R$375,60</div>
         <div class="plan-price" style="color:var(--primary);"><span>R$</span>27</div>
         <div class="plan-installments">ou 6x de R$5,31 no cartão</div>
-        <div class="plan-savings">💚 Você economiza R$348,60</div>
+        <div class="plan-savings"> Você economiza R$348,60</div>
         <ul class="plan-features">
           <li>
             <span class="plan-check"><svg aria-hidden="true"><use href="#icon-check"/></svg></span>
