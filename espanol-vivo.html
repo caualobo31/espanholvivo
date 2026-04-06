@@ -24,6 +24,9 @@
 .plan-savings{font-size:13px;font-weight:700;color:#16a34a;background:#dcfce7;border:1px solid #86efac;border-radius:100px;padding:5px 16px;display:inline-block;margin-bottom:18px}
 .plan-warning{font-size:12px;color:rgba(220,38,38,0.75);text-align:center;margin-top:8px}
 .plan-social-proof{font-size:13px;color:var(--text-muted);text-align:center;margin-top:10px}
+.plan-header-block{text-align:center;margin-bottom:22px}
+.plan-payment-note{font-size:12px;color:var(--text-muted);margin-top:6px;margin-bottom:2px}
+.btn-basic{width:100%;margin-bottom:20px}
 @keyframes premiumGlow{0%,100%{box-shadow:0 4px 24px rgba(181,69,27,0.40)}50%{box-shadow:0 6px 48px rgba(181,69,27,0.60),0 0 0 5px rgba(181,69,27,0.10)}}
 .plan-card.featured .btn-premium{animation:premiumGlow 2.5s ease-in-out infinite}
 .plan-card.featured::before{content:'';position:absolute;inset:-2px;border-radius:22px;background:linear-gradient(135deg,rgba(181,69,27,0.55),rgba(212,84,42,0.15),rgba(181,69,27,0.55));z-index:-1;animation:featuredShimmer 3s ease-in-out infinite}
@@ -586,8 +589,12 @@
     <div class="plans-grid">
 
       <div class="plan-card">
-        <div class="plan-name">Plano Básico</div>
-        <div class="plan-price"><span>R$</span>10</div>
+        <div class="plan-header-block">
+          <div class="plan-name">Plano Básico</div>
+          <div class="plan-price"><span>R$</span>10</div>
+          <div class="plan-payment-note">pagamento único • acesso imediato</div>
+        </div>
+        <a href="#" class="btn-basic">Começar Agora →</a>
         <ul class="plan-features">
           <li>
             <span class="plan-check"><svg aria-hidden="true"><use href="#icon-check"/></svg></span>
@@ -626,17 +633,20 @@
             Suporte prioritário
           </li>
         </ul>
-        <a href="#" class="btn-basic">Começar Agora →</a>
         <p style="font-size:13px;color:var(--text-muted);text-align:center;margin-top:14px;">🏆 <strong>94% das professoras escolhem o Plano Premium</strong> e já aplicam as dinâmicas na mesma semana da compra.</p>
       </div>
 
       <div class="plan-card featured">
         <div class="plan-badge">⭐ MAIS ESCOLHIDO</div>
-        <div class="plan-name">Plano Premium</div>
-        <div class="plan-price-old">De R$375,60</div>
-        <div class="plan-price" style="color:var(--primary);"><span>R$</span>27</div>
-        <div class="plan-installments">ou 6x de R$5,31 no cartão</div>
-        <div class="plan-savings"> Você economiza R$348,60</div>
+        <div class="plan-header-block">
+          <div class="plan-name">Plano Premium</div>
+          <div class="plan-price-old">De R$375,60</div>
+          <div class="plan-price" style="color:var(--primary);"><span>R$</span>27</div>
+          <div class="plan-installments">ou 6x de R$5,31 no cartão</div>
+          <div class="plan-payment-note">pagamento único • acesso imediato</div>
+          <div class="plan-savings">💚 Você economiza R$348,60</div>
+        </div>
+        <a href="https://pay.wiapy.com/Upvzpf7Jhb" class="btn btn-premium checkout-link" style="width:100%;justify-content:center;">Quero o Premium →</a>
         <ul class="plan-features">
           <li>
             <span class="plan-check"><svg aria-hidden="true"><use href="#icon-check"/></svg></span>
@@ -667,7 +677,6 @@
             Atualizações gratuitas
           </li>
         </ul>
-        <a href="https://pay.wiapy.com/Upvzpf7Jhb" class="btn btn-premium checkout-link" style="width:100%;justify-content:center;">Quero o Premium →</a>
         <p class="micro-text" style="margin-top:10px;">Acesso imediato · Garantia de 15 dias</p>
         <p class="plan-social-proof">🚀 Aumente o engajamento das suas aulas com menos esforço — aproveite essa promoção imperdível</p>
       </div>
