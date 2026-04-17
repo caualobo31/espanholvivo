@@ -32,6 +32,9 @@
 .plan-card.featured::before{content:'';position:absolute;inset:-2px;border-radius:22px;background:linear-gradient(135deg,rgba(181,69,27,0.55),rgba(212,84,42,0.15),rgba(181,69,27,0.55));z-index:-1;animation:featuredShimmer 3s ease-in-out infinite}
 @keyframes featuredShimmer{0%,100%{opacity:0.6}50%{opacity:1}}
 @media(max-width:640px){.plan-card.featured{padding:32px 22px!important}}
+.hero-tags{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 22px;flex-wrap:wrap}
+.hero-tag{background:rgba(181,69,27,0.07);border:1px solid rgba(181,69,27,0.18);color:var(--primary);font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;padding:6px 16px;border-radius:100px;letter-spacing:0.01em}
+.hero-tag-sep{color:var(--text-muted);font-size:18px;font-weight:300;line-height:1;user-select:none}
 </style>
 
 
@@ -64,9 +67,16 @@
       ✦ Para Professores de Espanhol
     </div>
     <h1>
-      <span class="headline-accent">+600 Dinâmicas Prontas</span> Com Jogos, Desafios e Simulações Que Fazem Seus Alunos <span class="headline-accent">Falarem, Participarem e Aprenderem de Verdade</span>
+      <span class="headline-accent">+600 Dinâmicas de Espanhol</span> para o aluno aprender <span class="headline-accent">se divertindo</span>
     </h1>
-    <p class="hero-sub">Cada dinâmica vem com roteiro completo, tempo de aplicação e materiais simples.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">🎮 Jogos</span>
+      <span class="hero-tag-sep">·</span>
+      <span class="hero-tag">⚡ Desafios</span>
+      <span class="hero-tag-sep">·</span>
+      <span class="hero-tag">🎭 Simulações</span>
+    </div>
+    <p class="hero-sub">Dinâmicas simples, prontas para aplicar em sala de aula.</p>
 
     <div class="hero-video-wrap">
       <div style="padding:177.78% 0 0 0;position:relative;">
