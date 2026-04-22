@@ -35,6 +35,20 @@
 .hero-tags{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 22px;flex-wrap:wrap}
 .hero-tag{background:rgba(224,107,10,0.07);border:1px solid rgba(224,107,10,0.18);color:var(--primary);font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;padding:6px 16px;border-radius:100px;letter-spacing:0.01em}
 .hero-tag-sep{color:var(--text-muted);font-size:18px;font-weight:300;line-height:1;user-select:none}
+.pain-section{background:var(--white);padding:70px 0}
+.pain-quote{background:rgba(224,107,10,0.06);border-left:4px solid var(--primary);border-radius:0 10px 10px 0;padding:18px 24px;max-width:680px;margin:0 auto 56px}
+.pain-quote p{font-size:17px;font-style:italic;color:var(--dark);margin-bottom:6px}
+.pain-quote span{font-size:14px;font-weight:600;color:var(--primary)}
+.pain-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:960px;margin:0 auto}
+.pain-img-wrap{border-radius:18px;overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/3;background:var(--bg-warm);display:flex;align-items:center;justify-content:center}
+.pain-img{width:100%;height:100%;object-fit:cover;display:block}
+.pain-img-wrap.pain-img-placeholder::after{content:'📸 Imagem da sala de aula';font-size:15px;color:var(--text-muted);text-align:center;padding:24px}
+.pain-headline{font-size:clamp(24px,3.5vw,36px);color:var(--dark);line-height:1.2;margin-bottom:32px}
+.pain-accent{color:var(--primary)}
+.pain-list{list-style:none;display:flex;flex-direction:column;gap:22px}
+.pain-item{display:flex;align-items:flex-start;gap:16px;font-size:16px;color:var(--text);line-height:1.55}
+.pain-icon{font-size:22px;flex-shrink:0;margin-top:1px}
+@media(max-width:767px){.pain-layout{grid-template-columns:1fr;gap:36px}.pain-img-wrap{max-width:480px;margin:0 auto;width:100%}}
 </style>
 
 
@@ -86,7 +100,39 @@
   </div>
 </section>
 
-<!-- 3. IDENTIFICATION -->
+<!-- 3. PAIN MOMENT -->
+<section class="section pain-section">
+  <div class="container">
+    <div class="pain-quote">
+      <p>"Isso acontece comigo todos os dias."</p>
+      <span>— Clara, professora em BH</span>
+    </div>
+    <div class="pain-layout">
+      <div class="pain-img-wrap">
+        <img src="images/dinamicas/sala-aula.webp" alt="Alunos desengajados em sala de aula" class="pain-img" onerror="this.parentElement.classList.add('pain-img-placeholder')">
+      </div>
+      <div class="pain-content">
+        <h2 class="pain-headline">Você prepara a aula com cuidado,<br><span class="pain-accent">mas na hora…</span></h2>
+        <ul class="pain-list">
+          <li class="pain-item">
+            <span class="pain-icon">📝</span>
+            <span>Você chegou cedo, planejou tudo, e ainda assim a turma mal prestou atenção</span>
+          </li>
+          <li class="pain-item">
+            <span class="pain-icon">📱</span>
+            <span>Metade dos alunos estava no celular enquanto você explicava o conteúdo</span>
+          </li>
+          <li class="pain-item">
+            <span class="pain-icon">🙁</span>
+            <span>Você fez uma pergunta e ouviu silêncio — ninguém quis participar</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. IDENTIFICATION -->
 <section class="section identification section-warm">
   <div class="container">
     <div class="section-header">
