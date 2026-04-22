@@ -49,6 +49,14 @@
 .pain-item{display:flex;align-items:flex-start;gap:16px;font-size:16px;color:var(--text);line-height:1.55}
 .pain-icon{font-size:22px;flex-shrink:0;margin-top:1px}
 @media(max-width:767px){.pain-layout{grid-template-columns:1fr;gap:36px}.pain-img-wrap{max-width:480px;margin:0 auto;width:100%}}
+.carousel-viewport{overflow:hidden;width:100%;position:relative;padding:8px 0 16px}
+.carousel-viewport::before,.carousel-viewport::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.carousel-viewport::before{left:0;background:linear-gradient(to right,var(--bg-warm),transparent)}
+.carousel-viewport::after{right:0;background:linear-gradient(to left,var(--bg-warm),transparent)}
+.carousel-track{display:flex;gap:24px;width:max-content;animation:carouselScroll 35s linear infinite}
+.carousel-track:hover{animation-play-state:paused}
+@keyframes carouselScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.testimonials-section .testimonial-card{width:320px;flex-shrink:0}
 </style>
 
 
@@ -373,17 +381,17 @@
       <h2>Veja o que <span style="color:var(--primary);">professores como você</span> estão dizendo</h2>
       <p>Resultados reais de quem já aplica as dinâmicas em sala de aula.</p>
     </div>
-    <div class="testimonials-grid">
+  </div>
+  <div class="carousel-viewport">
+    <div class="carousel-track">
+      <!-- original set -->
       <div class="testimonial-card">
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">Eu adaptava material de inglês pro espanhol toda semana. Agora tenho tudo pronto e meus alunos finalmente participam de verdade.</p>
         <div class="testimonial-author">
           <img src="images/depoimentos/mariana.webp" alt="Professora Mariana" class="author-photo" loading="lazy" width="46" height="46" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="author-photo-placeholder" style="display:none;">👩</div>
-          <div>
-            <div class="author-name">Professora Mariana</div>
-            <div class="author-info">Curitiba, PR · Escola estadual</div>
-          </div>
+          <div><div class="author-name">Professora Mariana</div><div class="author-info">Curitiba, PR · Escola estadual</div></div>
         </div>
       </div>
       <div class="testimonial-card">
@@ -392,10 +400,7 @@
         <div class="testimonial-author">
           <img src="images/depoimentos/lucas.webp" alt="Professor Lucas" class="author-photo" loading="lazy" width="46" height="46" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="author-photo-placeholder" style="display:none;">👨</div>
-          <div>
-            <div class="author-name">Professor Lucas</div>
-            <div class="author-info">Campinas, SP · Curso de idiomas</div>
-          </div>
+          <div><div class="author-name">Professor Lucas</div><div class="author-info">Campinas, SP · Curso de idiomas</div></div>
         </div>
       </div>
       <div class="testimonial-card">
@@ -404,10 +409,83 @@
         <div class="testimonial-author">
           <img src="images/depoimentos/debora.webp" alt="Professora Débora" class="author-photo" loading="lazy" width="46" height="46" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="author-photo-placeholder" style="display:none;">👩</div>
-          <div>
-            <div class="author-name">Professora Débora</div>
-            <div class="author-info">Salvador, BA · Escola particular</div>
-          </div>
+          <div><div class="author-name">Professora Débora</div><div class="author-info">Salvador, BA · Escola particular</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Nunca pensei que seria tão fácil engajar os alunos. Em 10 minutos de dinâmica a sala estava animada, todo mundo participando.</p>
+        <div class="testimonial-author">
+          <div class="author-photo-placeholder">👩</div>
+          <div><div class="author-name">Professora Ana Paula</div><div class="author-info">Belo Horizonte, MG · Ensino médio</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Antes eu gastava o domingo inteiro preparando aulas. Agora levo 15 minutos. Esse material mudou completamente minha rotina.</p>
+        <div class="testimonial-author">
+          <div class="author-photo-placeholder">👩</div>
+          <div><div class="author-name">Professora Camila</div><div class="author-info">Porto Alegre, RS · Curso livre</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">O que mais gosto é que as dinâmicas são pensadas para o espanhol de verdade. Não é adaptação de inglês. Faz toda a diferença.</p>
+        <div class="testimonial-author">
+          <div class="author-photo-placeholder">👨</div>
+          <div><div class="author-name">Professor Rafael</div><div class="author-info">Recife, PE · Escola bilíngue</div></div>
+        </div>
+      </div>
+      <!-- duplicate for seamless loop -->
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Eu adaptava material de inglês pro espanhol toda semana. Agora tenho tudo pronto e meus alunos finalmente participam de verdade.</p>
+        <div class="testimonial-author">
+          <img src="images/depoimentos/mariana.webp" alt="" class="author-photo" loading="lazy" width="46" height="46" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="author-photo-placeholder" style="display:none;">👩</div>
+          <div><div class="author-name">Professora Mariana</div><div class="author-info">Curitiba, PR · Escola estadual</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Meus alunos achavam espanhol fácil e não davam valor. Depois que comecei a usar as dinâmicas, eles viram que o idioma é muito mais que "portunhol".</p>
+        <div class="testimonial-author">
+          <img src="images/depoimentos/lucas.webp" alt="" class="author-photo" loading="lazy" width="46" height="46" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="author-photo-placeholder" style="display:none;">👨</div>
+          <div><div class="author-name">Professor Lucas</div><div class="author-info">Campinas, SP · Curso de idiomas</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Sou a única professora de espanhol da escola. Me sentia sozinha. Esse material me deu segurança pra dar aulas que eu tenho orgulho.</p>
+        <div class="testimonial-author">
+          <img src="images/depoimentos/debora.webp" alt="" class="author-photo" loading="lazy" width="46" height="46" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="author-photo-placeholder" style="display:none;">👩</div>
+          <div><div class="author-name">Professora Débora</div><div class="author-info">Salvador, BA · Escola particular</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Nunca pensei que seria tão fácil engajar os alunos. Em 10 minutos de dinâmica a sala estava animada, todo mundo participando.</p>
+        <div class="testimonial-author">
+          <div class="author-photo-placeholder">👩</div>
+          <div><div class="author-name">Professora Ana Paula</div><div class="author-info">Belo Horizonte, MG · Ensino médio</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Antes eu gastava o domingo inteiro preparando aulas. Agora levo 15 minutos. Esse material mudou completamente minha rotina.</p>
+        <div class="testimonial-author">
+          <div class="author-photo-placeholder">👩</div>
+          <div><div class="author-name">Professora Camila</div><div class="author-info">Porto Alegre, RS · Curso livre</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">O que mais gosto é que as dinâmicas são pensadas para o espanhol de verdade. Não é adaptação de inglês. Faz toda a diferença.</p>
+        <div class="testimonial-author">
+          <div class="author-photo-placeholder">👨</div>
+          <div><div class="author-name">Professor Rafael</div><div class="author-info">Recife, PE · Escola bilíngue</div></div>
         </div>
       </div>
     </div>
