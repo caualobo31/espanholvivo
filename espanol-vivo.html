@@ -56,7 +56,7 @@
 .carousel-track{display:flex;gap:24px;width:max-content;animation:carouselScroll 35s linear infinite}
 .carousel-track:hover{animation-play-state:paused}
 @keyframes carouselScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.testimonials-section .testimonial-card{width:320px;flex-shrink:0}
+.carousel-photo{height:420px;width:auto;border-radius:16px;box-shadow:var(--shadow-lg);flex-shrink:0;object-fit:contain;display:block}
 </style>
 
 
@@ -384,110 +384,15 @@
   </div>
   <div class="carousel-viewport">
     <div class="carousel-track">
-      <!-- original set -->
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Eu adaptava material de inglês pro espanhol toda semana. Agora tenho tudo pronto e meus alunos finalmente participam de verdade.</p>
-        <div class="testimonial-author">
-          <img src="images/depoimentos/mariana.webp" alt="Professora Mariana" class="author-photo" loading="lazy" width="46" height="46" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="author-photo-placeholder" style="display:none;">👩</div>
-          <div><div class="author-name">Professora Mariana</div><div class="author-info">Curitiba, PR · Escola estadual</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Meus alunos achavam espanhol fácil e não davam valor. Depois que comecei a usar as dinâmicas, eles viram que o idioma é muito mais que "portunhol".</p>
-        <div class="testimonial-author">
-          <img src="images/depoimentos/lucas.webp" alt="Professor Lucas" class="author-photo" loading="lazy" width="46" height="46" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="author-photo-placeholder" style="display:none;">👨</div>
-          <div><div class="author-name">Professor Lucas</div><div class="author-info">Campinas, SP · Curso de idiomas</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Sou a única professora de espanhol da escola. Me sentia sozinha. Esse material me deu segurança pra dar aulas que eu tenho orgulho.</p>
-        <div class="testimonial-author">
-          <img src="images/depoimentos/debora.webp" alt="Professora Débora" class="author-photo" loading="lazy" width="46" height="46" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="author-photo-placeholder" style="display:none;">👩</div>
-          <div><div class="author-name">Professora Débora</div><div class="author-info">Salvador, BA · Escola particular</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Nunca pensei que seria tão fácil engajar os alunos. Em 10 minutos de dinâmica a sala estava animada, todo mundo participando.</p>
-        <div class="testimonial-author">
-          <div class="author-photo-placeholder">👩</div>
-          <div><div class="author-name">Professora Ana Paula</div><div class="author-info">Belo Horizonte, MG · Ensino médio</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Antes eu gastava o domingo inteiro preparando aulas. Agora levo 15 minutos. Esse material mudou completamente minha rotina.</p>
-        <div class="testimonial-author">
-          <div class="author-photo-placeholder">👩</div>
-          <div><div class="author-name">Professora Camila</div><div class="author-info">Porto Alegre, RS · Curso livre</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">O que mais gosto é que as dinâmicas são pensadas para o espanhol de verdade. Não é adaptação de inglês. Faz toda a diferença.</p>
-        <div class="testimonial-author">
-          <div class="author-photo-placeholder">👨</div>
-          <div><div class="author-name">Professor Rafael</div><div class="author-info">Recife, PE · Escola bilíngue</div></div>
-        </div>
-      </div>
-      <!-- duplicate for seamless loop -->
-      <div class="testimonial-card" aria-hidden="true">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Eu adaptava material de inglês pro espanhol toda semana. Agora tenho tudo pronto e meus alunos finalmente participam de verdade.</p>
-        <div class="testimonial-author">
-          <img src="images/depoimentos/mariana.webp" alt="" class="author-photo" loading="lazy" width="46" height="46" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="author-photo-placeholder" style="display:none;">👩</div>
-          <div><div class="author-name">Professora Mariana</div><div class="author-info">Curitiba, PR · Escola estadual</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card" aria-hidden="true">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Meus alunos achavam espanhol fácil e não davam valor. Depois que comecei a usar as dinâmicas, eles viram que o idioma é muito mais que "portunhol".</p>
-        <div class="testimonial-author">
-          <img src="images/depoimentos/lucas.webp" alt="" class="author-photo" loading="lazy" width="46" height="46" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="author-photo-placeholder" style="display:none;">👨</div>
-          <div><div class="author-name">Professor Lucas</div><div class="author-info">Campinas, SP · Curso de idiomas</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card" aria-hidden="true">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Sou a única professora de espanhol da escola. Me sentia sozinha. Esse material me deu segurança pra dar aulas que eu tenho orgulho.</p>
-        <div class="testimonial-author">
-          <img src="images/depoimentos/debora.webp" alt="" class="author-photo" loading="lazy" width="46" height="46" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="author-photo-placeholder" style="display:none;">👩</div>
-          <div><div class="author-name">Professora Débora</div><div class="author-info">Salvador, BA · Escola particular</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card" aria-hidden="true">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Nunca pensei que seria tão fácil engajar os alunos. Em 10 minutos de dinâmica a sala estava animada, todo mundo participando.</p>
-        <div class="testimonial-author">
-          <div class="author-photo-placeholder">👩</div>
-          <div><div class="author-name">Professora Ana Paula</div><div class="author-info">Belo Horizonte, MG · Ensino médio</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card" aria-hidden="true">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">Antes eu gastava o domingo inteiro preparando aulas. Agora levo 15 minutos. Esse material mudou completamente minha rotina.</p>
-        <div class="testimonial-author">
-          <div class="author-photo-placeholder">👩</div>
-          <div><div class="author-name">Professora Camila</div><div class="author-info">Porto Alegre, RS · Curso livre</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card" aria-hidden="true">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">O que mais gosto é que as dinâmicas são pensadas para o espanhol de verdade. Não é adaptação de inglês. Faz toda a diferença.</p>
-        <div class="testimonial-author">
-          <div class="author-photo-placeholder">👨</div>
-          <div><div class="author-name">Professor Rafael</div><div class="author-info">Recife, PE · Escola bilíngue</div></div>
-        </div>
-      </div>
+      <img src="images/depoimentos/dep%201%20PA.webp" alt="Depoimento 1" class="carousel-photo" loading="lazy">
+      <img src="images/depoimentos/dep%202%20PA.jpg" alt="Depoimento 2" class="carousel-photo" loading="lazy">
+      <img src="images/depoimentos/dep%203%20PA.webp" alt="Depoimento 3" class="carousel-photo" loading="lazy">
+      <img src="images/depoimentos/dep%204%20PA.webp" alt="Depoimento 4" class="carousel-photo" loading="lazy">
+      <!-- duplicates for seamless loop -->
+      <img src="images/depoimentos/dep%201%20PA.webp" alt="" class="carousel-photo" loading="lazy" aria-hidden="true">
+      <img src="images/depoimentos/dep%202%20PA.jpg" alt="" class="carousel-photo" loading="lazy" aria-hidden="true">
+      <img src="images/depoimentos/dep%203%20PA.webp" alt="" class="carousel-photo" loading="lazy" aria-hidden="true">
+      <img src="images/depoimentos/dep%204%20PA.webp" alt="" class="carousel-photo" loading="lazy" aria-hidden="true">
     </div>
   </div>
 </section>
